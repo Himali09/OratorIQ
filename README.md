@@ -22,11 +22,14 @@ To run the Orator-IQ application locally, follow these steps:
    ```bash
    git clone https://github.com/Himali09/Orator-IQ.git
 
-##Usage
-Start the Flask application:
-   ```bash
-   python app.py
+## Usage
+To start the Flask application, follow these steps:
+  
+ 1. Run app.py file
+    ```bash
+    python app.py
 
-Open your web browser and access the application at http://localhost:5000.
+2. Open your web browser and access the application at http://localhost:5000
+3. Upload audio files for speech analysis or use the microphone for live speech input. 
 
-Upload audio files for speech analysis or use the microphone for live speech input.
+

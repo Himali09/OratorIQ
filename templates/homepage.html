@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="antialiased">
+    <nav class="relative">
+        <img src="{{url_for('static',filename='/img/bg.png')}}" class="w-screen h-[350px] 2xl:h-screen">
+        <div
+            class="absolute top-4 left-0 right-0 flex items-center justify-center h-8 text-white font-bold text-[10px] 2xl:h-20 2xl:top-12 2xl:text-3xl 2xl:right-16 xl:top-8 xl:text-2xl xl:right-8 lg:top-8 lg:text-xl lg:right-4 md:top-8 md:text-lg md:right-4">
+            <a href=""
+                class="px-2 mr-2 hover:underline hover:text-gray-200 hover:font-bold 2xl:px-4 2xl:mr-4">Home</a>
+            <a href="#" onclick="scrollToSection('about')"
+                class="px-2 mr-2 hover:underline hover:text-gray-200 hover:font-bold transition-transform 2xl:px-4 2xl:mr-4">About</a>
+            <a href="#" onclick="scrollToSection('team')"
+                class="px-2 mr-2 hover:underline hover:text-gray-200 hover:font-bold 2xl:px-4 2xl:mr-4">Team</a>
+            <a href="{{url_for('services')}}"
+                class="px-2 mr-2 hover:underline hover:text-gray-200 hover:font-bold 2xl:px-4 2xl:mr-4">Services</a>
+            <div class="absolute top-2 right-4">
+                <div class="relative">
+                    <img src="assets\img\dropdown.png" alt="Dropdown" class="cursor-pointer" width="90" height="90" onclick="toggleDropdown()">
+                    <div id="dropdownMenu" class="hidden absolute top-full right-0 mt-2 bg-black border border-gray-200 rounded-md shadow-lg">
+                        <a href="{{url_for('profile')}}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
+                        <a href="{{url_for('index')}}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                function toggleDropdown() {
+                    var dropdownMenu = document.getElementById("dropdownMenu");
+                    dropdownMenu.classList.toggle("hidden");
+                    }
+            </script>
+                
+        </div>
+    </nav>
+
+    <hr style="height:5px;border-width:0;color:gray;background-color:gray">
+
+    <!-- About Section -->
+    <div id="about" class="flex flex-col items-center justify-center">
+        <nav class="relative">
+            <img src="{{url_for('static',filename='/img/about.png')}}" class="w-screen h-[350px] 2xl:h-screen 2xl:w-screen 2xl:h-screen">
+        </nav>
+        <h1
+            class="absolute top-[60%] right-[10%] transform -translate-x-1/2 -translate-y-1/2 text-[#048aff] text-3xl font-bold 2xl:text-6xl 2xl:top-[110%] 2xl:right-[25%]">
+            ABOUT</h1>
+        <p
+            class="absolute top-[80%] right-[-70%] transform -translate-x-1/2 -translate-y-1/2 text-white text-[10px] font-bold max-w-xs sm:max-w-md 2xl:max-w-3xl break-words text-justify 2xl:top-[160%] 2xl:right-[-15%] 2xl:text-2xl">
+            OratorIQ is a comprehensive interview preparation website. <br><br>
+            Offers a unique blend of interview practice and speech analysis tools. <br><br>
+            Features include eye contact analysis, audio assessment, grammar correction, and pace evaluation. <br><br>
+            Provides users with detailed insights to enhance their communication skills by generating in-depth
+            analysis report.<br><br>
+            Enables users to refine their performance and build confidence for real-world scenarios. <br><br>
+            Elevate your speaking abilities with OratorIQ's innovative approach to interview and speech preparation.
+            <br><br>
+        </p>
+    </div>
+
+
+    <hr style="height:5px;border-width:0;color:gray;background-color:gray">
+
+    <!-- Team Section -->
+    <div id="team">
+        <nav class="relative">
+            <img src="{{url_for('static',filename='/img/team.png')}}" class="w-screen h-screen">
+        </nav>
+    </div>
+    <div class="w-[200px] absolute left-[16%] top-[228%]">
+        <div class="relative bg-blue-400 p-5 rounded-sm">
+            <img src="{{url_for('static',filename='/img/Anushree.png')}}" alt="Profile Picture" class="inline-block h-48 w-48 rounded-full mb-4 mx-auto">
+            <div>
+                <h5 class="flex items-center justify-center text-2xl font-semibold mb-2 text-black">Anushree <br>
+                    &nbsp;Salunke</h5>
+                <p class="flex items-center justify-center text-xl text-black">Student</p>
+            </div>
+        </div>
+    </div>
+    <div class="w-[200px] absolute left-[34%] top-[228%]">
+        <div class="relative bg-blue-400 p-5 rounded-sm">
+            <img src="{{url_for('static',filename='/img/himali.png')}}" alt="Profile Picture" class="inline-block h-48 w-48 rounded-full mb-4 mx-auto">
+            <div>
+                <h5 class="flex items-center justify-center text-2xl font-semibold mb-2 text-black">&nbsp;Himali
+                    <br>Suroshi
+                </h5>
+                <p class="flex items-center justify-center text-xl text-black">Student</p>
+            </div>
+        </div>
+    </div>
+    <div class="w-[200px] absolute left-[52%] top-[228%]">
+        <div class="relative bg-blue-400 p-5 rounded-sm">
+            <img src="{{url_for('static',filename='/img/megha.png')}}" alt="Profile Picture" class="inline-block h-48 w-48 rounded-full mb-4 mx-auto">
+            <div>
+                <h5 class="flex items-center justify-center text-2xl font-semibold mb-2 text-black">Megha <br>
+                    &nbsp;&nbsp;Soni</h5>
+                <p class="flex items-center justify-center text-xl text-black">Student</p>
+            </div>
+        </div>
+    </div>
+    <div class="w-[200px] absolute left-[70%] top-[228%]">
+        <div class="relative bg-blue-400 p-5 rounded-sm">
+            <img src="{{url_for('static',filename='/img/pragya.png')}}" alt="Profile Picture" class="inline-block h-48 w-48 rounded-full mb-4 mx-auto">
+            <div>
+                <h5 class="text-2xl font-semibold mb-2 text-black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pragya
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tripathi
+                </h5>
+                <p class="flex items-center justify-center text-lg text-black">Student</p>
+            </div>
+        </div>
+    </div>
+    <button onclick="scrollToTop()"
+        class="fixed bottom-4 right-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-300 2xl:text-4xl 2xl:rounded-lg 2xl:right-12 2xl:bottom-12 xl:rounded-md xl:text-2xl xl:right-8 xl:bottom-8">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    </div>
+    <hr style="height:5px;border-width:0;color:gray;background-color:gray">
+</body>
+<script>
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function scrollToSection(sectionId) {
+        var section = document.getElementById(sectionId);
+        window.scrollTo({
+            top: section.offsetTop,
+            behavior: 'smooth'
+        });
+    }
+</script>
+
+</html>

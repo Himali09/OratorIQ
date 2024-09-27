@@ -1,0 +1,127 @@
+body {
+  /* background: #2C365E; */
+  background: url("../img/Login-reg.png") no-repeat;
+  /* background-size: cover; */
+  background-size: cover;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.register {
+  position: absolute;
+  width: 700px;
+  height: 665px;
+  left: 376px;
+  top: 25px;
+  /* border-radius: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5); */
+}
+
+.heading {
+  position: relative;
+  left: 10%;
+}
+img {
+  position: absolute;
+  width: 513px;
+  height: 875px;
+  left: 83px;
+  top: 75px;
+
+  background: url(image.png);
+  border-radius: 20px;
+}
+
+.registerhere {
+  width: 100%;
+  display: block;
+  font-family: monospace, sans-serif, cursive;
+  font-size: 30px;
+  color: #ffffff;
+  line-height: 1.2;
+  text-align: center;
+  margin-top: 35px;
+}
+.font {
+  font-family: sans-serif, cursive;
+  color: #2c365e;
+}
+
+.form {
+  padding-left: 150px;
+  padding-top: 45px;
+}
+input {
+  background-color: black;
+}
+#submit {
+  margin: 0px 0px 0px 180px;
+}
+.passwordInput {
+  margin-top: 5%;
+  text-align: center;
+}
+
+.displayBadge {
+  margin-top: 5px;
+  margin-bottom: 3px;
+  width: 70px;
+  display: none;
+  text-align: center;
+}
+
+.input-group {
+  position: relative;
+  font-family: sans-serif;
+  font-size: 20px;
+  padding-bottom: 30px;
+  font-weight: bold;
+  left: 20%;
+  color: white;
+}
+
+.input-group input[type="text"] {
+  position: relative;
+  left: 15px;
+  width: 400px;
+  color: black;
+}
+
+.input-group input[type="email"] {
+  position: relative;
+  left: 15px;
+  width: 400px;
+  color: black;
+}
+
+.input-group input[type="number"] {
+  position: relative;
+  left: 15px;
+  width: 400px;
+  color: black;
+}
+
+.input-group input[type="password"] {
+  position: relative;
+  left: 15px;
+  width: 400px;
+  color: black;
+}
+
+.wrapper .input-group .submit-btn {
+  width: 50%;
+  position: relative;
+  top: -5px;
+  padding: 8px 10px;
+  font-size: 25px;
+  border: 5px;
+  background: #0d6efd;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 7px;
+  right: 65px;
+  outline: none;
+  text-transform: uppercase;
+}

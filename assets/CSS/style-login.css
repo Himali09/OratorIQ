@@ -1,0 +1,197 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: url('../img/Login-reg.png');
+  background-size: cover;
+  font-family: sans-serif;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.login-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-control {
+  position: relative;
+  width: 50%;
+  max-width: 380px;
+  font-weight: 700;
+  padding: 10px 20px 10px;
+  margin: 2px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+}
+.form-control-2 {
+  position: relative;
+  width: 50%;
+  max-width: 380px;
+  padding: 10px 20px 10px;
+  margin: 2px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+}
+
+.form {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  padding: 80px 40px 40px;
+  background: rgba(255, 255, 255,0.4);
+  border-radius: 10px;
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+}
+/* .form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  transform: skewX(-26deg);
+  transform-origin: bottom left;
+  border-radius: 10px;
+  pointer-events: none;
+} */
+.form #Img2 {
+  position: absolute;
+  top: 4px;
+  left: calc(85%);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+.form #Img1 {
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
+  width: 100px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  border: 7px solid black;
+}
+.form h2 {
+  text-align: center;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  color: #c1ffd7;
+  font-size: 25px;
+}
+.form h5 {
+  text-align: center;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  color: #c1ffd7;
+}
+.form .input-group {
+  position: relative;
+}
+
+.form .input-group input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+}
+
+.form label{
+  font-size: 15px;
+  position: relative;
+  bottom:12px;
+}
+.form .input-group label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: 0.3s ease-out;
+}
+.form .input-group input:focus + label,
+.form .input-group input:valid + label {
+  transform: translateY(-18px);
+  color: #c1ffd7;
+  font-size: 0.8rem;
+}
+.submit-btn {
+  display: block;
+  margin-left: revert;
+  border: none;
+  outline: none;
+  background: gold;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  margin: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.forgot-pw {
+  color: inherit;
+}
+a:link,
+a:visited {
+  text-decoration: none;
+  color: #c1ffd7;
+
+  position:relative;
+  bottom: -10px;
+}
+
+#forgot-pw {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  z-index: 1;
+  background: dimgray;
+  opacity: 0;
+  transition: 0.6s;
+}
+.close {
+  position: absolute;
+  right: 1.5rem;
+  top: 0.5rem;
+  font-size: 2rem;
+  font-weight: 900;
+  text-decoration: none;
+  color: inherit;
+}
+#forgot-pw:target {
+  height: 100%;
+  opacity: 1;
+}
+h6 {
+  position: relative;
+  width: 50%;
+  max-width: 500px;
+  font-size: 14px;
+  padding: 10px 8px 11px;
+  margin: 5px;
+  border-radius: 10px;
+  color: #fff;
+}

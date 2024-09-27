@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"
+        integrity="sha512-zO8oeHCxetPn1Hd9PdDleg5Tw1bAaP0YmNvPY8CwcRyUk7d7/+nyElmFrB6f7vg4f7Fv4sui1mcep8RIEShczg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Student Information</title>
+    <style>
+        body {
+            /* background: url("Report.png") no-repeat; */
+            background: rgb(4, 138, 255);
+            background: linear-gradient(125deg, rgba(4, 138, 255, 1) 0%, rgba(0, 0, 0, 1) 15%, rgba(0, 0, 0, 1) 85%, rgba(177, 0, 232, 1) 100%) no-repeat;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        span {
+            font-size: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 1rem;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .column {
+            padding: 1rem;
+        }
+
+        .student-info {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #FFCC00;
+        }
+
+        .info-section {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .graph-section {
+            margin-top: 30px;
+        }
+
+        #barGraph {
+            width: 80%;
+            max-width: 700px;
+            margin: 0 auto;
+            position: absolute;
+            top: 200px;
+            left: 20px;
+        }
+
+        #download {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            background-color: #3490dc;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .circle {
+            width: 80px;
+            height: 80px;
+            font-size: 1.5rem;
+            margin-right: 200px;
+            /* Increased gap between circles */
+        }
+
+        .gram,
+        .simil {
+            left: 15%;
+        }
+
+        .speech {
+            left: 10%;
+        }
+
+        .over {
+            left: 65.5%;
+        }
+
+        .c-1 {
+            border-color: #FFCC00;
+        }
+
+        .c-2 {
+            border-color: #00FF00;
+        }
+
+        /* Additional styles for larger screens */
+        @media (min-width: 768px) {
+            .circle {
+                width: 80px;
+                height: 80px;
+                font-size: 1.5rem;
+                margin-right: 200px;
+                /* Increased gap between circles */
+            }
+
+            .barGraphContainer {
+                width: 100px;
+                display: block;
+            }
+
+            .bar {
+                flex: 1;
+                background-color: rgba(255, 255, 255, 0.7);
+                margin: 0 10px;
+                text-align: center;
+            }
+
+            .skill-labels {
+                text-align: left;
+                margin-top: 10px;
+                margin-bottom: 0;
+            }
+
+            .info-section {
+                text-align: left;
+                margin-top: 10px;
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            .graph-section {
+                margin-left: auto;
+                text-align: center;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .circle {
+                width: 100px;
+                height: 100px;
+                font-size: 2rem;
+                margin-right: 30px;
+                /* Increased gap between circles */
+            }
+        }
+
+        .logo {
+            position: absolute;
+            left: 2%;
+            top: 2%;
+        }
+
+        @media print {
+            .logo {
+                position: relative;
+                top: 10%;
+                /* Adjust as needed */
+                right: 10%;
+                /* Adjust as needed */
+            }
+        }
+
+        /* Hide back to homepage button when printing */
+        @media print {
+            .fixed {
+                display: none;
+            }
+        }
+
+        @media print {
+            #barGraph {
+                width: 80%;
+                max-width: 300px;
+                margin: 0 auto;
+                position: absolute;
+                top: 350px;
+                left: 50px;
+            }
+        }
+
+        @media print {
+            #download {
+                display: none;
+            }
+        }
+
+        .line-1 {
+            width: 210%;
+            /* Make sure the div occupies the full available width */
+            /* box-sizing: border-; */
+        }
+    </style>
+</head>
+
+<body class="text-white bg-opacity-75">
+
+    <!-- Left Section: Student Information and Communicative Skills -->
+    <div class="container mx-auto flex items-start mt-8">
+        <div class="w-full pr-4 left-12">
+            <img src="{{url_for('static',filename='img/ORATORIQ.png')}}" width="200" height="200" class="logo">
+            <!-- Student Information -->
+            <div class="text-white p-4 top-4 left-12 relative border-4 w-5/6">
+                <h1 class="text-4xl font-bold">Student Information</h1>
+                <!-- Add user information here -->
+                {% if user %}
+                <p class="text-white text-2xl mb-4 relative">Name: {{ user.first_name }} {{ user.last_name }}</p>
+                <p class="text-white text-2xl">Email: {{ user.email }}</p>
+                {% endif %}
+            </div>
+
+            <br>
+            <h1 class="text-white w-max text-4xl top-8 font-bold p-4 left-12 mb-4 relative border-4">
+                Communicative Skills
+            </h1>
+            {%if report_type=='Technical Interview'%}
+            <!-- Speaking Circle -->
+            <div class="w-full flex grid grid-cols-2 top-8 left-20 mb-4 relative items-center justify-center skill-labels">
+                <div class="circle border-4 c-1 rounded-full flex items-center justify-center">{{data.avg_accuracy}}
+                </div>
+                <div class="circle border-4 c-2 rounded-full flex items-center justify-center">{{data.overall_rating}}
+                </div>
+            </div>
+            <div class="w-full mb-4 left-0 relative skill-labels">
+                <p class="relative font-bold top-8 left-16 text-2xl text-white">Accuracy</p>
+                <p class="relative font-bold bottom-0 left-72 text-2xl text-white">Overall Rating</p>
+            </div>
+        </div>
+        {% for i in range(data['questions']|length) %}
+        <div>
+            <hr class="line-1">
+            <h1 class="text-white text-4xl font-bold p-4 left-12 mb-4 relative">Question</h1>
+            <p class="relative left-16"><strong>{{data['questions'][i]}}</strong></p>
+            <h1 class="text-white text-4xl font-bold p-4 left-12 mb-4 relative">Answer Given</h1>
+            <p class="relative left-16"><strong>{{data['user_answer'][i].value}}</strong></p>
+            <h1 class="text-white text-4xl font-bold p-4 left-12 mb-4 relative">Corrected Text</h1>
+            <p class="relative left-16"><strong>{{data['corrected_text'][i]}}</strong></p>
+            <h1 class="text-white text-4xl font-bold p-4 left-12 mb-4 relative">Grammar Score</h1>
+            <p class="relative left-16"><strong>{{data['grammar_score'][i]}}</strong></p>
+            <h1 class="text-white text-4xl font-bold p-4 left-12 mb-4 relative">Accuracy</h1>
+            <p class="relative left-16"><strong>{{data['similarity'][i]}}</strong></p>
+        </div>
+        {% endfor %}
+        {%elif report_type=='HR Interview'%}
+        <div class="w-full flex grid grid-cols-1 top-8 left-20 mb-4 relative items-center justify-center skill-labels">
+            <div class="circle border-4 c-1 rounded-full flex items-center justify-center">{{data.avg_rating}}
+            </div>
+        </div>
+        <div class="w-full mb-4 left-0 relative skill-labels">
+            <p class="relative speech font-bold top-8 text-2xl text-white">Overall Rating</p>
+        </div>
+    </div>
+    {% for i in range(data['questions']|length) %}
+    <div>
+        <hr class="line-1">
+        <h1 class="text-white text-4xl font-bold p-4 left-12 mb-4 relative">Question</h1>
+        <p class="relative left-16"><strong>{{data['questions'][i]}}</strong></p>
+        <h1 class="text-white text-4xl font-bold p-4 left-12 mb-4 relative">Answer Given</h1>
+        <p class="relative left-16"><strong>{{data['user_answer'][i].value}}</strong></p>
+        <h1 class="text-white text-4xl font-bold p-4 left-12 mb-4 relative">Corrected Text</h1>
+        <p class="relative left-16"><strong>{{data['corrected_text'][i]}}</strong></p>
+        <h1 class="text-white text-4xl font-bold p-4 left-12 mb-4 relative">Grammar Score</h1>
+        <p class="relative left-16"><strong>{{data['grammar_score'][i]}}</strong></p>
+    </div>
+    {% endfor %}
+    {%endif%}
+    <div>
+        <br>
+        <hr class="line-1">
+        <h3 class="text-white text-4xl font-bold p-4 left-12 mb-4 relative">Eye Contact Analysis</h3>
+
+        <br>
+        <!--
+            <strong class="relative left-8">
+                <span style="font-size: 20px;">Eye Contact Maintained </span>
+                <span> {{report.att_time}} secs</span>
+                <br>
+                <span style="font-size: 20px;">Total time </span>
+                <span> {{report.tot_time}} secs</span>
+
+            </strong>-->
+    </div>
+    <!-- Additional Information -->
+    <div class="text-white p-4 left-4 relative">
+        <h1 class="text-4xl font-bold mb-4">Additional Information</h1>
+        {% if user %}
+        <p class="text-white text-2xl mb-2">Profession: {{ user.profession }}</p>
+        <p class="text-white text-2xl mb-2">Domain: {{ user.domain }}</p>
+        <p class="text-white text-2xl">Skills: {{ user.skills }}</p>
+        {% endif %}
+    </div>
+
+
+    </div>
+    <button id="download"
+        class="relative top-0 right-0 items-center bg-blue-500 text-white text-3xl px-4 py-2 rounded-3xl mt-4 font-semibold uppercase hover:bg-blue-900">Download</button>
+    <br>
+    <a href="{{url_for('redirect_to_main')}}"
+        class="fixed top-4 right-8 bg-white p-3 rounded-3xl text-gray-800 flex items-center">
+        <i class="fas fa-home text-2xl text-black mr-2"></i>
+        <p class="text-black text-2xl">Back to homepage</p>
+    </a>
+    <script>
+        const download = document.getElementById('download');
+        download.addEventListener('click', () => {
+            window.print();
+        });
+
+    </script>
+</body>
+
+</html>

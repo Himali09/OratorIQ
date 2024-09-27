@@ -1,0 +1,26 @@
+import nltk
+
+nltk.download('punkt')  # Download the Punkt Tokenizer Models
+
+from nltk.tokenize import sent_tokenize
+
+def add_full_stops(transcribed_text):
+    # Tokenize the text into sentences
+    sentences = sent_tokenize(transcribed_text)
+
+    # Add a full stop to the end of each sentence if it doesn't have one
+    sentences_with_full_stops = [sentence.strip() + '.' if sentence and sentence[-1] not in ['.', '!', '?'] else sentence.strip() for sentence in sentences]
+
+    # Join the sentences back into a single string
+    result_text = ' '.join(sentences_with_full_stops)
+
+    # Remove any extra whitespace or special characters at the beginning or end of the text
+    result_text = result_text.strip()
+
+    return result_text
+
+# Example usage:
+transcribed_text = "This is a transcribed text without full stops This is another sentence without full stops"
+text_with_full_stops = add_full_stops(transcribed_text)
+
+print(text_with_full_stops)

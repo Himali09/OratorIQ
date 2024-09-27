@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registration Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style-register.css') }}" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6 main">
+        <div class="register">
+          <form action="{{ url_for('register')}}" class="form" method="POST" onsubmit="return validateMobileNumber()">
+            <span class="registerhere">
+              <h1 class="heading">REGISTER HERE </h1>
+            </span>
+            <br>
+            <div class="wrapper">
+              <input type="hidden" name="user_id" value="{{ user_id }}">
+              <div class="input-group"> 
+                First Name: <input type="text" class="box name-input" id="name-1" name="first_name" placeholder="" required />
+              </div>
+              <div class="input-group">
+                Last Name:<input type="text" name="last_name" id="name-2" required class="name-input">
+              </div>
+              <div class="input-group">
+                &nbsp;&nbsp; &nbsp;Email ID:<input type="email" class="box" id="email" name="email" placeholder=""
+                  required />
+              </div>
+              <div class="input-group">
+                &nbsp;&nbsp; &nbsp;&nbsp;Number:<input type="text" class="box" id="contact" name="contact"
+                  placeholder="" required />
+              </div>
+              <div class="input-group">
+                &nbsp;Password:<input type="password" class="box" id="password" name="password" placeholder=""
+                  required />
+              </div>
+              <div class="input-group">
+                Profession:<input type="text" class="box" id="profession" name="profession" placeholder="" required />
+              </div>
+              <div class="input-group">
+                &nbsp;&nbsp;&nbsp;Domains:<input type="text" class="box" id="domain" name="domain" placeholder=""
+                  required />
+              </div>
+              <div class="input-group">
+                <input type="submit" class="submit-btn" value="Submit" id="submit" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+
+  <a href="{{url_for('index')}}" class="fixed top-4 right-8 bg-white p-3 rounded-3xl text-gray-800 flex items-center">
+    <i class="fas fa-home text-2xl text-black mr-2"></i>
+    <p class="text-black text-2xl">Back to homepage</p>
+  </a>
+</body>
+
+<script>
+  function validateMobileNumber() {
+    var mobileNumber = document.getElementById("contact").value;
+    // Regular expression to match a 10-digit number starting with 1 to 9.
+    var regex = /^[1-9][0-9]{9}$/;
+    if (!regex.test(mobileNumber)) {
+      alert("Please enter a valid 10-digit mobile number.");
+      return false; // Prevent form submission
+    }
+    return true; // Allow form submission
+  }
+</script>
+
+<script>
+  // timeout before a callback is called
+
+  let timeout;
+
+  // traversing the DOM and getting the input and span using their IDs
+
+  let password = document.getElementById('password');
+  let strengthBadge = document.getElementById('StrengthDisp');
+
+  // The strong and weak password Regex pattern checker
+
+  let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
+  let mediumPassword = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))');
+
+  function StrengthChecker(PasswordParameter) {
+    // We then change the badge's color and text based on the password strength
+
+    if (strongPassword.test(PasswordParameter)) {
+      strengthBadge.style.backgroundColor = "green";
+      strengthBadge.textContent = 'Strong';
+    } else if (mediumPassword.test(PasswordParameter)) {
+      strengthBadge.style.backgroundColor = 'blue';
+      strengthBadge.textContent = 'Medium';
+    } else {
+      strengthBadge.style.backgroundColor = 'red';
+      strengthBadge.textContent = 'Weak';
+    }
+  }
+
+  // Adding an input event listener when a user types to the  password input 
+
+  password.addEventListener("input", () => {
+
+    //The badge is hidden by default, so we show it
+
+    strengthBadge.style.display = 'block';
+    clearTimeout(timeout);
+
+    //We then call the StrengChecker function as a callback then pass the typed password to it
+
+    timeout = setTimeout(() => StrengthChecker(password.value), 500);
+
+    //Incase a user clears the text, the badge is hidden again
+
+    if (password.value.length !== 0) {
+      strengthBadge.style.display !== 'block';
+    } else {
+      strengthBadge.style.display = 'none';
+    }
+  });
+</script>
+
+<script src="register_main.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3I

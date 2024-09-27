@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style-login.css') }}" type="text/css">
+
+  <title>LOGIN</title>
+
+</head>
+
+<body>
+  <div class="login-wrapper">
+    <form action="" class="form" method="post">
+      <img src="{{url_for('static', filename='img/Voter.png')}}" id="Img1">
+      <h2>LOGIN</h2>
+      <div class="input-group">
+        <input type="email" name="email" id="email" required>
+        <label for="email">Email</label>
+      </div>
+      <div class="input-group">
+        <input type="password" name="password" id="password" required>
+        <label for="password">Password</label>
+      </div>
+      <p id="Status"> </p>
+      <label>Enter Captcha:</label>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control" readonly id="capt">
+        </div>
+        <div class="form-group col-md-6">
+          <input type="text" name="captcha" class="form-control-2" id="textinput">
+        </div>
+      </div>
+      <input id="invalidcap" name="invalidcap" value="hello" for="submit" hidden>
+      <h6>Click to view Captcha - > <img src="{{url_for('static', filename='img/reficon.png')}}" id="Img2" width="30px" onclick="cap()" alt="refresh"></h6>
+      <output id="capvalid" name="capvalid"> </output>
+      <input type="submit" id="submit" value="Login" name="login" class="submit-btn" disabled onclick="submitForm(event)">
+
+      <a href="#forgot-pw" class="forgot-pw">Forgot Password?</a>
+      <p class="form__text">
+        <a class="form__link" href="{{url_for('register')}}" id="linkCreateAccount">Don't have an account? Create account</a>
+      </p>
+
+      {% if error_message %}
+      <script>
+        alert("{{ error_message }}");
+      </script>
+      {% endif %}
+      
+    </form>
+
+    <div id="forgot-pw">
+      <form action="" class="form">
+        <a href="#" class="close">&times;</a>
+        <h2>Reset Password</h2>
+        <div class="input-group">
+          <input type="email" name="email" id="email" required> <!-- Update id and name to 'email' -->
+          <label for="email">Email</label>
+        </div>
+
+        <input type="submit" value="Submit" class="submit-btn">
+      </form>
+    </div>
+  </div>
+
+  <script src="{{url_for('static',filename='JS/captcha.js')}}"></script>
+  <script>
+    function validcap() {
+      var captchaValue = document.getElementById('textinput').value;
+      if (captchaValue.trim() !== '') {
+        document.getElementById('submit').removeAttribute('disabled');
+      } else {
+        document.getElementById('submit').setAttribute('disabled', 'disabled');
+      }
+    }
+  
+    function submitForm(event) {
+      var captchaValue = document.getElementById('textinput').value;
+      var actualCaptcha = document.getElementById('capt').value;
+      if (captchaValue.trim() === '') {
+        event.preventDefault(); // Prevent form submission if captcha is not entered
+        alert('Please enter the captcha.');
+      } else if (captchaValue.trim() !== actualCaptcha) {
+        event.preventDefault(); // Prevent form submission if captcha is incorrect
+        alert('Invalid captcha. Please try again.');
+      }
+    }
+  </script>
+  
+  
+  
+</body>
+
+</html>

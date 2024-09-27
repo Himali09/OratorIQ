@@ -1,0 +1,323 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 29-Jan-2022, 12:01:06 am
+    Author     : HP
+*/
+* {
+    margin: 5px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: #b5deff no-repeat center;
+    background-size: cover;
+    font-family: sans-serif;
+  }
+  
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .form {
+    position: relative;
+    width: 100%;
+    max-width: 55%;
+    padding: 80px 40px 40px;
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 10px;
+    color: #fff;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+  }
+  
+  .form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    transform: skewX(-26deg);
+    transform-origin: bottom left;
+    border-radius: 10px;
+    pointer-events: none;
+  }  
+  .form h2 {
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    color: #211846;
+    text-transform: uppercase;
+  }
+  
+  .form .input-group {
+    position: relative;
+  }
+
+  .wrapper .form .input-group input[type="text"], .wrapper .form .input-group input[type="file"]{
+    width: 100%;
+  padding: 10px 0;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background-color: transparent;
+  color:#fff;
+  border: none;
+  padding: 8px 10px;
+  font-size:15px;
+  border-radius: 3px;
+  }
+  input[type='file']{
+    color:#fff
+    ;
+    border: none;
+    padding: 8px 10px;
+    font-size:15px;
+    border-radius: 3px;
+  
+  }
+  .wrapper .form .input-group input[type="radio"]{
+    margin-bottom: 15px;
+    padding: 8px;
+    align-items: center;
+    text-emphasis: none;
+  }
+  .wrapper .form .input-group label {
+    width: 200px;
+    color: #fff;
+    margin-right: 10px;
+    font-size: 18px;
+  }
+  .wrapper .form {
+    width: 100%;
+  }
+  .wrapper .form .input-group .input, .wrapper .form .input-group.textarea {
+    width: 100%;
+    outline: none;
+    border: 1px solid #d5dbd9;
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }  
+  .wrapper .form .input-group .submit-btn {
+    width: 50%;
+    padding: 8px 10px;
+    font-size: 15px;
+    border: 5px;
+    background: #acaeff;
+    color: #000;
+    cursor: pointer;
+    border-radius: 7px;
+    outline: none;
+    margin-left: 25%;
+    text-transform: uppercase;
+  }
+  
+  .wrapper .form .input-group .reset-btn {
+    width: 50%;
+    padding: 8px 10px;
+    font-size: 15px;
+    border: 5px;
+    background: #acaeff;
+    color: #000;
+    cursor: pointer;
+    border-radius: 7px;
+    outline: none;
+    text-transform: uppercase;
+    margin-left:25%;
+  } 
+  .wrapper .form .input-group .submit-btn:hover {
+    background: #13aab8;
+  }
+  
+  .wrapper .form .input-group .reset-btn:hover {
+    background: #13aab8;
+    
+  }
+  .wrapper .form .input-group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    border: 0px;
+    padding: 8px 10px;
+    font-size: 15px;
+    border: 1px solid #d5dbd9;
+    border-radius: 3px;
+  }
+  
+  
+   
+  .close {
+    position: absolute;
+    right: 1.5rem;
+    top: 0.5rem;
+    font-size: 2rem;
+    font-weight: 900;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  h6 {
+    position: relative;
+    width: 50%;
+    max-width: 380px;
+    padding: 10px 20px 10px;
+    margin: 4px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    color: #fff;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+  }
+  #name {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+  }
+  #age{
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+  }
+  #branch{
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+  }
+  #division{
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+  }
+  #moodleId{
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+  }
+  #browser{
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+  }
+  #question1{
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+  }
+  #question2{
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+  }
+  #question3{
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+  }
+   #question4{
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+  }
+  input[type="radio"]:checked:before {
+      content: "";
+      display: block;
+      position: relative;
+      top: 3px;
+      left: 3px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #070bfe;
+  }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='CSS/style-services.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="relative">
+    <img src="{{url_for('static',filename='img/services.png')}}" alt="" class="w-screen h-screen absolute inset-0">
+    <div id="services" class="relative text-white text-center">
+        <h1 class="relative text-5xl font-bold mb-8 top-36 left-[-23%]">Services</h1>
+
+        <div class="btn-container flex left-3 top-20">
+            <button id="interview-button" class="p-6 mx-4">
+                <a href="{{url_for('interview')}}" class="text-white bg-white">
+                    <h1 class="text-4xl font-semibold mb-4">Interview</h1>
+                    <p class="text-2xl">Analyses facial Expressions, eye contact and speed of the voice</p>
+                </a>
+            </button>
+            <button id="speech-button" class="p-6 mx-4">
+                <a href="{{url_for('speech')}}" class="text-white">
+                    <h1 class="text-4xl font-semibold mb-4">Speech</h1>
+                    <p class="text-2xl">Analyze speech and focus on improving grammar and suggest improvements in
+                        speed
+                        of voice and grammar</p>
+                </a>
+            </button>
+        </div>
+    </div>
+    <a href="{{url_for('redirect_to_main')}}" class="fixed top-4 right-8 bg-white p-3 rounded-3xl text-gray-800 flex items-center">
+        <i class="fas fa-home text-2xl text-black mr-2"></i>
+        <p class="text-black text-2xl">Back to homepage</p>
+    </a>
+
+
+    <button onclick="goBack()" class="fixed bottom-4 left-4 bg-white w-20 p-3 rounded-3xl text-gray-800">
+        <i class="fas fa-arrow-left text-2xl"></i>
+    </button>
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function goBack() {
+            window.history.back();
+        }
+        function confirmNavigation(event) {
+            var confirmNavigate = confirm("Your session will get terminated. Do you want to continue?");
+            if (!confirmNavigate) {
+                event.preventDefault();
+            }
+        }
+    </script>
+</body>
+
+</html>

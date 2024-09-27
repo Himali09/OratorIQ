@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
+    <style>
+        .center-box {
+            position: absolute;
+            top: 650%;
+            left: 50%;
+            width: 900px;
+            height: 600px;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 5px solid rgb(11, 116, 158);
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-gray-100">
+
+    <div class="relative">
+        <img src="{{url_for('static',filename='img/speech.gif')}}" alt=""
+            class="w-screen h-screen absolute inset-0 z-0">
+        <div id="services" class="relative text-white text-center">
+            <h1 class="relative text-6xl font-bold mb-8 top-4">Speech</h1>
+        </div>
+        <div id='wrapper' class="container mx-auto p-4 relative z-10 center-box">
+
+            <button id="startRecording"
+                class="bg-green-500 hover:bg-white text-white hover:text-black px-4 py-2 rounded-3xl mr-2 text-2xl font-bold">
+                Start Recording
+            </button>
+
+            <button id="stopRecording"
+                class="bg-red-500 hover:bg-white text-white hover:text-black px-4 py-2 rounded-3xl mb-4 mr-2 text-2xl font-bold"
+                style="display: none;" disabled>
+                Stop Recording
+            </button>
+
+            <button id="nextBtn"
+                class="relative top-0 right-0 items-center bg-blue-500 text-white text-3xl px-4 py-2 rounded-3xl mt-4 font-semibold uppercase hover:bg-blue-900"
+                style="display: none;" disabled>Get
+                your Analysis</button>
+            <br>
+            <div id="timer" style="display: none; font-size: 1.5em; margin-top: 10px;"></div>
+
+        </div>
+    </div>
+    <a href="{{url_for('redirect_to_main')}}"
+        class="fixed top-4 right-8 bg-white p-3 rounded-3xl text-gray-800 flex items-center"
+        onclick="confirmNavigation(event)">
+        <i class="fas fa-home text-2xl text-black mr-2"></i>
+        <p class="text-black text-2xl">Back to homepage</p>
+    </a>
+
+    <script>
+        function confirmNavigation(event) {
+            var confirmNavigate = confirm("Your session will get terminated. Do you want to continue?");
+            if (!confirmNavigate) {
+                event.preventDefault();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let mediaRecorder;
+            let audioChunks = [];
+            let startTime;
+            const startButton = document.getElementById('startRecording');
+            const stopButton = document.getElementById('stopRecording');
+            const nextBtn = document.getElementById('nextBtn');
+            const wrapper = document.getElementById('wrapper');
+            const timerDisplay = document.getElementById('timer');
+
+            const formData = new FormData();
+
+
+            startButton.addEventListener('click', function () {
+                startButton.disabled = true;
+
+                // Add your logic to start recording here
+                let countdown = 5;
+                const countdownInterval = setInterval(function () {
+                    startButton.textContent = `Recording in ${countdown} seconds...`;
+                    countdown--;
+
+                    if (countdown < 0) {
+
+                        // Start recording after the countdown
+                        clearInterval(countdownInterval);
+                        startButton.textContent = 'Recording...';
+                        timerDisplay.style.display = 'inline';
+                        startTime = new Date().getTime();
+
+                        navigator.mediaDevices.getUserMedia({ audio: true })
+                            .then(function (stream) {
+                                mediaRecorder = new MediaRecorder(stream);
+
+                                mediaRecorder.ondataavailable = function (event) {
+                                    if (event.data.size > 0) {
+                                        audioChunks.push(event.data);
+                                    }
+                                };
+
+                                mediaRecorder.onstop = function () {
+                                    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                                    const audioUrl = URL.createObjectURL(audioBlob);
+
+                                    // You can now use the audioBlob for further processing or playback.
+                                    // For example, you can create a new Audio element and set its source.
+                                    const audioPlayer = new Audio(audioUrl);
+                                    audioPlayer.controls = true;
+                                    audioPlayer.src = audioUrl;
+
+                                    uploadAudio(audioBlob);
+
+
+                                    const audioPlayerContainer = document.createElement('div');
+                                    audioPlayerContainer.style.textAlign = 'center';
+                                    audioPlayerContainer.style.position = 'absolute';  // You may not need this line if the wrapper already has a position
+                                    audioPlayerContainer.style.left = '50%';
+                                    audioPlayerContainer.style.top = '50%';
+                                    audioPlayerContainer.style.transform = 'translate(-50%, -50%)';
+                                    audioPlayerContainer.appendChild(audioPlayer);
+                                    wrapper.appendChild(audioPlayerContainer);
+
+                                    clearInterval(timerInterval);
+                                    stream.getTracks().forEach(track => track.stop());
+
+                                    audioChunks = [];
+
+
+                                };
+
+                                // Start recording
+                                mediaRecorder.start();
+
+                                // Show the stop button and hide the start button
+                                startButton.style.display = 'none';
+                                stopButton.style.display = 'inline-block';
+                                stopButton.disabled = false;
+
+                                const timerInterval = setInterval(function () {
+                                    const elapsedSeconds = Math.floor((new Date().getTime() - startTime) / 1000);
+                                    timerDisplay.textContent = `Recording: ${elapsedSeconds}s`;
+                                }, 1000);
+
+
+                            })
+
+                            .catch(function (error) {
+                                console.error('Error accessing microphone:', error);
+                                startButton.textContent = 'Start Recording';
+                                startButton.disabled = false;
+                                timerDisplay.style.display = 'none';
+                            });
+                    }
+                }, 1000);
+            });
+
+            stopButton.addEventListener('click', function () {
+                // Show the start button and hide the stop button
+                stopButton.style.display = 'none';
+                stopButton.disabled = true;
+                nextBtn.style.display = 'inline-block';
+                nextBtn.disabled = false;
+                mediaRecorder.stop();
+
+                // Add your logic to stop recording here
+            });
+
+            function uploadAudio(audioBlob) {
+                formData.append('audio_data', audioBlob);
+            }
+
+            function saveAudio(formData) {
+                fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.text())
+                    .then(data => console.log(data))
+                    .catch(error => console.error('Error uploading audio:', error));
+            }
+
+            nextBtn.addEventListener('click', function () {
+                saveAudio(formData)
+                setTimeout(function () {
+                    window.location.href = "{{url_for('report')}}";
+                }, 3000);
+            })
+        });
+    </script>
+
+</body>
+
+</html>

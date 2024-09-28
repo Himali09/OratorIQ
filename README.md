@@ -1,5 +1,4 @@
-# OratorIQ
-## Abstract
+# Orator-IQ: Interview Preparation and Speech Analyzer
 Public speaking is one of the most important yet dreaded forms of communication. Mastering public speaking increases confidence and fosters a cool and collected presence in front of an audience. Orator-IQ is an innovative application designed to help users enhance their public speaking skills through speech analysis and interview preparation. By leveraging advanced technologies, Orator-IQ provides constructive feedback and personalized recommendations, catering to students, presenters, public speakers, and interviewees.
 
 ## Technologies Used
